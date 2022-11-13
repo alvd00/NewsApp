@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/splashScreenFragment">
+
+
+    <fragment
+        android:id="@+id/login_navigation"
+        android:name="com.example.ltechapp.presentation.login.LoginFragment"
+        tools:layout="@layout/fragment_login" />
+
+    <fragment
+        android:id="@+id/splashScreenFragment"
+        android:name="com.example.ltechapp.presentation.splash_screen.SplashFragment"
+        android:label="fragment_splash_screen"
+        tools:layout="@layout/fragment_splash">
+        <action
+            android:id="@+id/action_splashScreenFragment_to_mainFragment"
+            app:destination="@id/login_navigation"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/mobile_navigation" />
+    </fragment>
+
+    <action
+        android:id="@+id/action_global_mainFragment"
+        app:destination="@id/mainFragment"
+        app:launchSingleTop="false"
+        app:popUpTo="@id/login_navigation" />
+
+    <action
+        android:id="@+id/action_global_stubFragment"
+        app:destination="@id/stubFragment"
+        app:launchSingleTop="false"
+        app:popUpTo="@id/login_navigation" />
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.ltechapp.presentation.news.NewsFragment"
+        android:label="MainFragment"
+        tools:layout="@layout/fragment_news">
+        <action
+            android:id="@+id/action_global_NewsDetailsFragment"
+            app:destination="@id/newsDetailsFragment"
+            />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/stubFragment"
+        android:name="com.example.ltechapp.presentation.stub.StubFragment"
+        tools:layout="@layout/fragment_stub">
+        <action
+            android:id="@+id/action_global_NewsDetailsFragment"
+            app:destination="@id/newsDetailsFragment"
+            />
+        <action
+            android:id="@+id/action_to_login"
+            app:destination="@id/login_navigation"
+            />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/newsDetailsFragment"
+        android:name="com.example.ltechapp.presentation.news_details.NewsDetailsFragment"
+        tools:layout="@layout/news_details_fragment"
+        app:popUpTo="@id/mainFragment"
+        >
+        <argument android:name="news_args"
+            app:argType="com.example.ltechapp.domain.entities.News" />
+    </fragment>
+
+
+
+
+
+</navigation>
